@@ -1,0 +1,132 @@
+<html>
+
+<head>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style type="text/css">
+.jumbotron {
+    position: relative;
+    background: #8B0000;
+    width: 100%;
+    height: 100%;
+    
+    overflow: hidden;
+    max-width:2000px;
+    max-height:243px;
+	color:white;
+	img-src: "hsnclogo.png" ;
+	img-position: left-side;
+   
+   font:italic small-caps bold 15px georgia;
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+ <?php
+					//$con = mysqli_connect("localhost","id4797096_kajol","kajol","id4797096_project");
+					$con=mysqli_connect("localhost","root","pro");
+					// Check connection
+					if (mysqli_connect_errno())
+					{
+						echo "Failed to connect to MySQL: " . mysqli_connect_error();
+					}
+					
+					$sql="select * from event";
+					$result=mysqli_query($con,$sql);
+
+?>	
+
+  <div class="jumbotron text-center">
+    <h1>NSS UNIT OF K.C.COLLEGE.</h1>      
+    
+  </div>
+
+    
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">KCNSS</a>
+    </div>
+    <ul class="nav navbar-nav">
+	
+	<li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">EVENTS
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">View Events</a></li>
+          <li><a href="#">Update Events</a></li>
+          
+        </ul>
+      </li>
+	
+      
+     <li class="dropdown ">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">ACHIEVEMENTS
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">View Achievements</a></li>
+          <li><a href="#">Update Achievements</a></li>
+          
+        </ul>
+      </li>
+    
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+     
+      <li><a href="file:///C:/wamp/www/minipro/register.html"><span class="glyphicon glyphicon-user"></span> FEEDBACK</a></li>
+      <li><a href="file:///C:/wamp/www/minipro/login.html"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+ <div class="box-body table-responsive no-padding">
+     <table class="table table-hover">
+          <thead>
+		  <tr>
+              <th>EVENT NAME</th>
+              <th>DATE</th>
+              <th>VENUE</th>
+			  <th>DESCRIPTION</th>
+          </tr>
+		  </thead>
+		  <tbody>
+          <tr>
+              
+			 
+				<?php
+                   If( mysql_num_rows($result) > 0 )
+                   {
+                    while( $row=mysql_fetch_array( $result ) )
+                    {  
+
+                ?>
+                  <td> <?php echo $row['ename']; ?> </td> 
+                  <td> <?php echo $row['date']; ?> </td> 
+                  <td> <?php echo $row['venue']; ?> </td> 
+				  <td> <?php echo $row['description']; ?> </td> 
+                
+				<?php
+
+					}
+				   }
+                 ?>
+
+          </tr>
+		  </tbody>
+       </table>
+    </div>
+	</body>
+	</html>
